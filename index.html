@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Open Weather Map</title>
+
+    <!-- Import Montserrat Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
+    <!-- Fontawsome icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- main style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Weather Icon -->
+    <link rel="shortcut icon" href="weather.png" />
+
+    <!-- JQuery script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Popper script  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Bootstrap script -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Axios script -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Main script -->
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+
+    <!--  Preloader Start  -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- <span class="text-white">Loading failed please reload !!</span> -->
+    </div>
+    <!--  Preloader End  -->
+
+    <!-- Start the navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo col-4">
+            <button class="navbar-brand" href="#">
+                <span><i class="fas fa-wind"></i></span>
+            </button>
+            <span><em>Me</em>teo</span>
+        </div>
+        <div class="date col-8">
+            <span id="todayDate">Sunday, 12 fev 2021</span>
+        </div>
+        <!-- <div class="col-4"></div> -->
+    </nav>
+    <!-- End the navbar -->
+
+    <!-- Start Search -->
+    <section class="container search">
+        <article id="searchArt">
+            <div class="inputSearch">
+                <input id="inputSearch" type="text" placeholder="Type You City">
+            </div>
+            <button id="btnSearch" class="inputIcon">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </article>
+        <div id="warning" class="invisible"></div>
+    </section>
+    <!-- End Search -->
+
+    <!-- Start the Body Card -->
+    <section class="cust-container playCard">
+        <div class="row today">
+            <span class="overlayImg"></span>
+            <span class="overlay"></span>
+            <div class="col-6 col-md-5 col-sm-6  right">
+                <article>
+                    <h2 id="currentDayTemperature">21</h2>
+                    <span id="currentDayWeatherDescription" class="d-block">Cloudy</span>
+                </article>
+                <article>
+                    <div class="side">
+                        <span class="d-block">Humidity</span>
+                        <span id="currentDayHumidity">54 %</span>
+                    </div>
+                    <div class="side">
+                        <span class="d-block">Wind</span>
+                        <span id="currentDayWind">22 K / M</span>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-2 d-md-block d-none invisible "></div>
+            <div class="col-6  col-md-5 col-sm-6 left">
+                <div>
+                    <h1 id="myCity">Tinghir</h1>
+                    <hr>
+                </div>
+                <div class="d-block">
+                    <img id="currentDayIcon" src="" alt="Weather Photo">
+                </div>
+            </div>
+        </div>
+
+        <!-- The otherDays part -->
+        <div class="row otherDays">
+            <div class="col-12 col-md-3">
+                <div class="item">
+                    <div class="side">
+                        <img src="sunrise.png" alt="sunset">
+                    </div>
+                    <div class="side">
+                        <h3 class="d-block">sunrise</h3>
+                        <span id="sunrise" class="d-block">06:30 AM</span>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="side">
+                        <img src="sunset.png" alt="sunset">
+                    </div>
+                    <div class="side">
+                        <h3 class="d-block">sunset</h3>
+                        <span id="sunset" class="d-block">18:55 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="others" class="col-12 col-md-9"></div>
+        </div>
+    </section>
+    <!-- End the Body Card -->
+
+    <!-- Start footer -->
+    <footer>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="parrent">
+                    <span>Copyright 2021 by TDI202-SG-A | Coded by:&nbsp<a href="https://facebook.com/hnaniiiiii" target="_blanck"> Ahmed Hennani</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+</body>
+
+</html>

@@ -1,0 +1,923 @@
+:root {
+    --backgroundColor: #2b244d;
+    --testColor: rgba(0, 0, 255, 0.1);
+    --textColor: #fbf7f5;
+    --secondTextColor: #dad4ea;
+    --secondColor: #00ff9b;
+    --borderColor: #4f3f80;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(113, 27, 134, 1);
+    background: linear-gradient(to bottom left, #c948e8ad 20%, #414595 100%);
+    background-attachment: fixed;
+    font-family: "Montserrat", sans-serif, cursive;
+}
+
+.cust-container {
+    max-width: 55em;
+    margin: auto;
+}
+
+.row {
+    color: var(--textColor);
+}
+
+
+/* START preloader */
+
+#preloader {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+    position: fixed;
+    overflow: hidden;
+    background-attachment: fixed;
+    background: linear-gradient(to bottom right, #711B86, #00057A);
+}
+
+#preloader .jumper {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    display: block;
+    position: absolute;
+}
+
+#preloader .jumper>div {
+    opacity: 0;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border-radius: 100%;
+    animation-fill-mode: both;
+    background-color: #E0D2D9;
+    animation: jumper 1s 0s linear infinite;
+}
+
+#preloader>span {
+    font-size: 3em;
+    display: none;
+    align-items: center;
+    font-family: cursive, sans-serif;
+}
+
+#preloader .jumper>div:nth-child(2) {
+    animation-delay: 0.33333s;
+}
+
+#preloader .jumper>div:nth-child(3) {
+    animation-delay: 0.66666s;
+}
+
+@keyframes jumper {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+/* END preloader */
+
+
+/* Start the navbar */
+
+nav {
+    background-color: var(--backgroundColor);
+    margin-bottom: 2em;
+    color: var(--textColor);
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+nav>div {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+nav span {
+    margin: 5px;
+    display: flex;
+    font-weight: 600;
+    align-self: center;
+    color: var(--textColor);
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+nav .logo button {
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2em;
+    margin-right: .25em !important;
+    background-color: var(--secondColor);
+    border: 1px solid var(--borderColor);
+}
+
+nav .logo button:hover {
+    cursor: pointer;
+}
+
+nav .logo button:focus {
+    outline: none;
+}
+
+nav .logo span {
+    font-size: 2em;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: var(--secondColor);
+    text-transform: uppercase;
+    margin: 5px;
+}
+
+nav .logo button span {
+    font-size: 1.2em;
+}
+
+nav .logo span em {
+    color: #f5a425;
+    font-style: normal;
+}
+
+nav .logo span i {
+    font-size: 30px;
+    letter-spacing: 0;
+    color: var(--backgroundColor);
+}
+
+nav .date {
+    justify-content: flex-end;
+}
+
+nav .date {}
+
+
+/* End the navbar */
+
+
+/* Start Start Search */
+
+section.search {
+    margin-bottom: 2em;
+    position: relative;
+}
+
+.search article {
+    z-index: 4;
+    width: 45% !important;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: var(--textColor);
+    border: 2px solid var(--borderColor);
+}
+
+.search article:hover {
+    box-shadow: 0 0 1rem #ff0070 !important;
+}
+
+.search article div {
+    display: inline-block;
+}
+
+.search article div.inputSearch {
+    width: 92%;
+    margin-right: 0;
+    height: 100% !important;
+}
+
+.search article button.inputIcon {
+    top: 2.5px;
+    right: 10px;
+    width: 39px;
+    height: 39px;
+    margin-left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--backgroundColor);
+}
+
+.search article button.inputIcon i {
+    color: var(--textColor);
+    font-size: 1.6em;
+}
+
+.search article button:hover {
+    cursor: pointer;
+}
+
+.search article button:focus {
+    outline: none;
+}
+
+.search input[type="text"] {
+    margin: 0;
+    border: none;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 8px 15px;
+    display: inline-block;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--textColor);
+}
+
+.search input[type="text"]:focus {
+    outline: none !important;
+}
+
+.search #warning {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--borderColor);
+    ;
+    padding-top: 25px;
+    margin-top: -25px !important;
+}
+
+.search #warning div {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    color: var(--danger);
+    font-size: 1.3em;
+    background-color: var(--textColor);
+    margin: 2px 0;
+}
+
+
+/* End Search */
+
+
+/* Start the Body Card */
+
+.playCard {
+    height: 33.5em;
+    background-size: auto;
+    border-radius: 1em;
+    overflow: hidden;
+    margin-bottom: 2em;
+}
+
+.playCard>.row {
+    height: 50%;
+    position: relative;
+    background-color: var(--textColor);
+}
+
+.playCard .today {
+    text-transform: uppercase;
+}
+
+.playCard .today span.overlayImg {
+    background-image: url(city-01.jpg);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: inline-block;
+}
+
+.playCard .today span.overlay {
+    height: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    opacity: 0.75;
+    background-color: var(--backgroundColor);
+}
+
+.playCard .today>div {
+    padding: 1em 1.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.playCard .today>div:first-of-type {
+    flex-direction: column;
+}
+
+.playCard .today>div:first-of-type article {
+    width: 100%;
+    height: 75%;
+}
+
+.playCard .today>div:first-of-type article:first-of-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playCard .today>div:first-of-type article:first-of-type h2 {
+    font-size: 7em;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.playCard .today>div:first-of-type article span {
+    color: var(--secondTextColor);
+}
+
+.playCard .today>div:first-of-type article:first-of-type h2::after {
+    content: "°";
+    position: absolute;
+    right: -0.6em;
+}
+
+.playCard .today>div:first-of-type article:last-of-type {
+    display: flex;
+    justify-content: space-around;
+    height: 35% !important;
+    align-items: center;
+    text-align: center;
+}
+
+.playCard .today>div:last-child {
+    margin-top: 1.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+}
+
+.playCard .today>div:last-child>div {
+    display: inline-block;
+}
+
+.playCard .today>div:last-child>div hr {
+    background: var(--textColor);
+    border-radius: 10px;
+    height: 0.3em;
+    width: 60%;
+    margin: 0 auto 1em;
+}
+
+.playCard .today>div:last-child>div img {
+    border-radius: 10px;
+    height: 7em;
+    width: 7em;
+    margin: 0 auto 0;
+    display: inline-block;
+}
+
+
+/* otherDays Side */
+
+.playCard .otherDays {
+    color: var(--borderColor);
+}
+
+.playCard .otherDays>div {
+    padding: 1em 3em 1em 1em;
+}
+
+.playCard .otherDays>div:first-of-type {
+    padding-top: 1em;
+    padding-left: 1.6em;
+}
+
+.playCard .otherDays .item {
+    margin-bottom: .5em;
+    display: flex;
+}
+
+.playCard .otherDays .item .side:first-of-type {
+    --mesure: 3em;
+    height: var(--mesure);
+    width: var(--mesure);
+    max-width: var(--mesure);
+    max-height: var(--mesure);
+    min-width: var(--mesure);
+    min-height: var(--mesure);
+    margin-right: 1em;
+    border-radius: 4em;
+    background-color: var(--secondTextColor);
+}
+
+.playCard .otherDays .item .side:first-of-type img {
+    width: 100%;
+    height: 100%;
+}
+
+.playCard .otherDays .item .side:last-of-type {
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.playCard .otherDays .item .side h3 {
+    font-size: 1.3em !important;
+    margin: 0 !important;
+    font-weight: 700;
+}
+
+.playCard .otherDays .item .side span {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+
+/* others */
+
+.playCard .otherDays #others .row {
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+}
+
+.playCard .otherDays #others .row>div {
+    padding: .25em;
+}
+
+.playCard .otherDays #others span {
+    font-size: 1em !important;
+}
+
+.playCard .otherDays #others .row>div .day h3,
+.playCard .otherDays #others .row>div .day span {
+    color: var(--textColor) !important;
+}
+
+.playCard .otherDays #others .row>div .day {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 1em;
+    background: linear-gradient(to top, #711B86 35%, #00057A 100%);
+}
+
+.playCard .otherDays #others h3 {
+    font-size: 1.5em !important;
+}
+
+.playCard .otherDays #others .icon {}
+
+.playCard .otherDays #others .icon img {
+    --mesure: 100%;
+    width: var(--mesure);
+    height: var(--mesure);
+}
+
+.playCard .otherDays #others .temp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playCard .otherDays #others .temp span:first-of-type {
+    position: relative;
+}
+
+.playCard .otherDays #others .temp span:first-of-type:after {
+    content: "°";
+    margin-left: 3px;
+    position: absolute;
+    right: -20px;
+}
+
+.playCard .otherDays #others .day .minmax {
+    --top: -10px;
+    --bottom: 25px;
+    --mesure: .7em;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px 0 0;
+    font-size: 1.5em;
+}
+
+.playCard .otherDays #others .day .minmax span {
+    display: flex;
+    margin: 15px 0;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.playCard .otherDays #others .day .minmax span::before {
+    position: absolute;
+    content: "";
+    border: calc(var(--mesure) / 2) solid;
+    width: var(--mesure);
+    height: var(--mesure);
+    display: flex;
+    align-self: center;
+}
+
+.playCard .otherDays #others .day .minmax .min::before {
+    border-color: var(--green) transparent transparent;
+    top: var(--top);
+}
+
+.playCard .otherDays #others .day .minmax .max::before {
+    border-color: transparent transparent var(--red) transparent;
+    top: calc(var(--top) - 8px);
+}
+
+.playCard .otherDays #others .day .minmax span::after {
+    position: absolute;
+    display: flex;
+    align-self: center;
+    top: var(--bottom);
+    font-size: .8em !important;
+}
+
+.playCard .otherDays #others .day .minmax .min::after {
+    content: "MIN";
+    color: var(--green);
+}
+
+.playCard .otherDays #others .day .minmax .max::after {
+    content: "MAX";
+    color: var(--red);
+}
+
+
+/* End the Body Card */
+
+
+/* Start footer */
+
+
+/* Footer */
+
+footer {
+    background-color: var(--backgroundColor);
+    position: relative;
+}
+
+footer .parrent {
+    font-size: 0.9em !important;
+    margin-bottom: 0px;
+    padding: 1.2em 0px;
+    color: var(--textColor);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+footer .parrent span {
+    display: flex;
+    align-items: center;
+}
+
+footer .parrent span::before {
+    content: "\f1f9";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    margin-right: 5px;
+    font-size: 1.4em;
+}
+
+footer .parrent a,
+footer .parrent a:hover {
+    color: #f5a425;
+}
+
+
+/* End footer */
+
+
+/* Start Scrollbar */
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #52444A;
+    box-shadow: inset 0 0 5px grey;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #5e8ec1;
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #E5D6EC;
+}
+
+
+/* END Scrollbar */
+
+
+/* Media Queries */
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+    /* Gels */
+    .cust-container {
+        margin-right: 2em;
+        margin-left: 2em;
+    }
+    .search article {
+        width: 88% !important;
+        margin-right: 6%;
+        margin-left: 6%;
+    }
+    .playCard {
+        height: auto;
+        overflow: visible;
+    }
+    .playCard>.otherDays {
+        background: none;
+        height: auto;
+    }
+    .playCard .today {
+        height: 17em;
+        overflow: hidden;
+        border-top-left-radius: 1em !important;
+        border-top-right-radius: 1em !important;
+    }
+    .playCard .today>div:last-of-type {
+        margin-top: 3em;
+    }
+    .playCard .otherDays>div {
+        padding: 0em;
+        height: auto !important;
+    }
+    .playCard .today>div:first-of-type article:first-of-type h2 {
+        font-size: 4em;
+    }
+    .playCard .otherDays>div:first-of-type {
+        padding: 1em .5em;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: var(--textColor);
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        margin-bottom: 2em;
+    }
+    .playCard .today>div:last-of-type h1 {
+        font-size: 1.5em;
+    }
+    .playCard .otherDays .item {
+        display: flex;
+    }
+    .playCard .otherDays #others .row>div .day {
+        height: 24em;
+        width: 18em;
+        margin-right: auto;
+        margin-left: auto;
+        border: 5px solid var(--purple);
+    }
+    footer .parrent {
+        font-size: 0.75em !important;
+        letter-spacing: 0;
+    }
+    .playCard .otherDays #others h3 {
+        font-size: 2em !important;
+    }
+    .playCard .otherDays #others .temp span:first-of-type {
+        font-size: 2.5em !important;
+    }
+    .playCard .otherDays #others .temp span:last-of-type {
+        font-size: 1.2em !important;
+        text-transform: uppercase;
+    }
+    .playCard .otherDays #others .row>div {
+        margin-bottom: 2em;
+    }
+    .playCard .otherDays #others .row>div:last-of-type {
+        margin-bottom: 0;
+    }
+    .search #warning {
+        margin: 4px 6%;
+    }
+    .search #warning div {
+        width: 100%;
+    }
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+    .cust-container {
+        margin-right: 2em;
+        margin-left: 2em;
+    }
+    .search article {
+        width: 88% !important;
+        margin-right: 6%;
+        margin-left: 6%;
+    }
+    .playCard {
+        height: auto;
+        overflow: visible;
+    }
+    .playCard>.otherDays {
+        background: none;
+        height: auto;
+    }
+    .playCard .today {
+        height: 17em;
+        overflow: hidden;
+        border-top-left-radius: 1em !important;
+        border-top-right-radius: 1em !important;
+    }
+    .playCard .today>div:last-of-type {
+        margin-top: 3em;
+    }
+    .playCard .otherDays>div {
+        padding: 0em;
+        height: auto !important;
+    }
+    .playCard .today>div:first-of-type article:first-of-type h2 {
+        font-size: 4em;
+    }
+    .playCard .otherDays>div:first-of-type {
+        padding: 1em .5em;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: var(--textColor);
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        margin-bottom: 2em;
+    }
+    .playCard .otherDays #others .row>div .day {
+        height: 24em;
+        width: 18em;
+    }
+    .playCard .today>div:last-of-type h1 {
+        font-size: 1.5em;
+    }
+    .playCard .otherDays .item {
+        display: flex;
+    }
+    footer .parrent {
+        font-size: 0.75em !important;
+    }
+    .playCard .otherDays #others .row>div .day {
+        height: 24em;
+        width: 18em;
+        margin-right: auto;
+        margin-left: auto;
+        border: 5px solid var(--purple);
+    }
+    .playCard .otherDays #others h3 {
+        font-size: 2em !important;
+    }
+    .playCard .otherDays #others .temp span:first-of-type {
+        font-size: 2.5em !important;
+    }
+    .playCard .otherDays #others .temp span:last-of-type {
+        font-size: 1.2em !important;
+        text-transform: uppercase;
+    }
+    .playCard .otherDays #others .row>div {
+        margin-bottom: 2em;
+    }
+    .playCard .otherDays #others .row>div:last-of-type {
+        margin-bottom: 0;
+    }
+    .search #warning {
+        margin: 4px 6%;
+    }
+    .search #warning div {
+        width: 100%;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .search article,
+    .search #warning {
+        width: 80% !important;
+        margin: -25px auto 0!important;
+    }
+    .playCard {
+        height: 33.5em;
+        overflow: hidden;
+    }
+    .playCard>.row {
+        height: 50%;
+        background-color: var(--textColor) !important;
+    }
+    .playCard .today>div {
+        display: flex !important;
+        justify-content: center !important;
+    }
+    .playCard .otherDays>div:first-of-type {
+        padding-top: 1em !important;
+        padding-left: 1.6em !important;
+    }
+    .playCard .otherDays>div {
+        padding: 1em 3em 1em 1em;
+    }
+    .playCard .otherDays #others .row>div .day {
+        border: none;
+    }
+    .playCard .otherDays>div:first-of-type {
+        padding-top: 2em !important;
+        padding-left: 2em !important;
+        display: block !important;
+    }
+    footer .parrent {
+        font-size: 0.9em !important;
+    }
+    .playCard .otherDays #others .row>div .day {
+        height: 100%;
+        width: auto;
+    }
+    .playCard .otherDays #others h3 {
+        font-size: 1.5em !important;
+    }
+    .playCard .otherDays #others .temp span:first-of-type {
+        font-size: 1.5em !important;
+    }
+    .playCard .otherDays #others .temp span:last-of-type {
+        font-size: .8em !important;
+        text-transform: uppercase;
+    }
+    .playCard .otherDays #others .row>div {
+        margin-bottom: 0;
+    }
+    .search #warning div {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .cust-container {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .search article,
+    .search #warning {
+        width: 45% !important;
+    }
+    .playCard .otherDays #others .temp span:last-of-type {
+        font-size: 1em !important;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}
