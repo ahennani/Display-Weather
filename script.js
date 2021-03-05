@@ -7,6 +7,7 @@ let tempC
 let humidity
 let wind
 let todatDate
+let todatDate2
 let sunriseDOM
 let sunsetDOM
 let rest
@@ -23,6 +24,7 @@ $(() => {
     humidity = $("#currentDayHumidity")
     wind = $("#currentDayWind")
     todatDate = $("#todayDate")
+    todatDate2 = $("#todayDate2")
     sunriseDOM = $('#sunrise');
     sunsetDOM = $('#sunset');
     rest = $("#others")
@@ -33,6 +35,9 @@ $(() => {
     let urlAPI
 
     $(window).on('load', () => {
+        // Defualt city
+        $("#inputSearch").val("Rabat");
+        getLocationWeather("multy", `Rabat`);
         // Resize Warning Bar
         $("#searchArt").on("load resize", function() {
             $("#inputSearch").width($("#btnSearch").width());
@@ -40,13 +45,11 @@ $(() => {
 
         // Store cities in localestoge
         $("#inputSearch").focus(() => {
-            $("#warning").html("").removeClass("invisible").fadeIn();
-            let citiesHistory = loadHistory()
-            console.log(cities);
-            console.log(citiesHistory);
+            $("#warning").html("").fadeIn();
+            let citiesHistory = loadHistory();
             showCities(citiesHistory)
         }).focusout(() => {
-            $("#warning").html("").addClass("invisible").fadeOut();
+            $("#warning").fadeOut();
         })
 
         // Accesing Geolocation of User
@@ -60,30 +63,41 @@ $(() => {
                     fadeload();
                 },
                 (error) => {
-                    console.log(error);
+                    // Manage Error
                     fadeload();
                 });
         }
-        $("#btnSearch").click(function() {
+        $("#btnSearch").click(function(e) {
             city = $("#inputSearch").val().trim();
+            if (city == "") {
+                $("#warning")
+                    .html("<div> You should type a city!!")
+                    .css({ "color": "red", "display": "block" })
+                    .fadeOut(3000)
+                return;
+            }
             getLocationWeather("multy", city);
         });
         $('#inputSearch').on("keypress", function(e) {
             if (e.which == 13) {
                 city = $("#inputSearch").val().trim();
+                if (city == "") {
+                    $("#warning")
+                        .html("<div> You should type a city!!")
+                        .css({ "color": "red", "display": "block" })
+                        .fadeOut(3000)
+                    return;
+                }
                 getLocationWeather("multy", city);
-                console.log(e.which);
             }
         });
-
     });
-
 });
 
 const fadeload = () => {
     setTimeout(() => {
         $("#preloader").animate({
-                "opacity": "0"
+                opacity: "0"
             }, 500)
             .css("visibility", "hidden")
             .fadeOut();
@@ -106,31 +120,34 @@ const loadHistory = () => {
 // Show cities in suggetions bar
 const showCities = (citiesH) => {
     citiesH.forEach((e, i) => {
-        let div = $("<div>").text(`${e}`).addClass("city")
+        let div = $("<div>").text(`${e.toUpperCase()}`).addClass("city")
         $("#warning").append(div)
+        div.on("click", _ => {
+            $("#inputSearch").val(`${e}`)
+            getLocationWeather("multy", `${e}`);
+            $("#warning").fadeOut();
+        })
     })
 }
 
 // Get the api reasult and show it in the UI
 function getLocationWeather(type, myCity = "", long = -1, lat = -1) {
     if (type === "single") {
-        //console.log("single!!");
         urlAPI = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=52414d27dc2eef44fd822fdf41d5fb78&lang=fr`
     } else if (type === "multy") {
-        //console.log("multy!!");
         urlAPI = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${myCity}&units=metric&cnt=5&appid=${apiKey}`;
     }
 
     axios
         .get(urlAPI)
         .then(function(response) {
-            //console.log("success");
+            // Manage success
             if (type === "single") {
                 city = response.data.name;
                 $("#inputSearch").val(city);
                 getLocationWeather("multy", city);
             } else if (type === "multy") {
-                console.log(response.data);
+                //console.log(response.data);
 
                 // Converting Epoch(Unix) time to GMT
                 let { description, icon } = response.data.list[0].weather[0];
@@ -151,6 +168,7 @@ function getLocationWeather(type, myCity = "", long = -1, lat = -1) {
                 humidity.text(`${response.data.list[0].humidity} %`)
                 wind.text(`${speed.toFixed(1)} K / M`)
                 todatDate.text(`${aDate.toDateString()}`)
+                todatDate2.text(`${aDate.toDateString()}`)
                 sunriseDOM.text(`${s_rise.getHours()}:${s_rise.getMinutes()} AM`)
                 sunsetDOM.text(`${s_set.getHours()}:${s_set.getMinutes()} PM`)
 
@@ -205,21 +223,19 @@ function getLocationWeather(type, myCity = "", long = -1, lat = -1) {
 
             // Add current city to LocalStorage
             let tet = $("#inputSearch").val().trim()
-            console.log(tet);
-            localStorage.setItem(`_${ tet}`, tet);
-            console.log(localStorage.getItem(`_${tet}`));
+            if (tet !== "") {
+                console.log("hello");
+                localStorage.setItem(`_${ tet.toUpperCase() }`, tet.toUpperCase());
+            }
         })
         .catch(function(error) {
             // handle error
-            console.log(error);
             $("#warning")
                 .html("<div> The city is not found!!")
                 .addClass("d-block")
-                .css({
-                    "margin": "auto",
-                    "color": "red"
-                })
-            fadeload();
+                .css({ "color": "red" })
+                .fadeOut(3000)
+                .removeClass("d-block")
         })
         .then(function() {
             // always executed
