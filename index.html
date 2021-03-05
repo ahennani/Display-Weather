@@ -45,13 +45,13 @@
 
     <!-- Start the navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="logo col-4">
+        <div class="logo col-12 col-sm-4 justify-content-center justify-content-sm-start">
             <button class="navbar-brand" href="#">
                 <span><i class="fas fa-wind"></i></span>
             </button>
             <span><em>Me</em>teo</span>
         </div>
-        <div class="date col-8">
+        <div class="date col-8 d-none d-sm-flex">
             <span id="todayDate">Sunday, 12 fev 2021</span>
         </div>
         <!-- <div class="col-4"></div> -->
@@ -68,35 +68,36 @@
                 <i class="fas fa-arrow-right"></i>
             </button>
         </article>
-        <div id="warning" class="invisible"></div>
+        <div id="warning" class="" style="display: none;"></div>
     </section>
     <!-- End Search -->
 
     <!-- Start the Body Card -->
     <section class="cust-container playCard">
+        <article id="todayDate2" class="d-flex d-sm-none">Thu Mar 04 2021</article>
         <div class="row today">
             <span class="overlayImg"></span>
             <span class="overlay"></span>
-            <div class="col-6 col-md-5 col-sm-6  right">
+            <div class="order-2 order-sm-1 col-12 col-sm-6 col-md-5 col-sm-6  right">
                 <article>
                     <h2 id="currentDayTemperature">21</h2>
-                    <span id="currentDayWeatherDescription" class="d-block">Cloudy</span>
+                    <span id="currentDayWeatherDescription" class="d-block secondary">Cloudy</span>
                 </article>
                 <article>
                     <div class="side">
                         <span class="d-block">Humidity</span>
-                        <span id="currentDayHumidity">54 %</span>
+                        <span id="currentDayHumidity" class="secondary">54 %</span>
                     </div>
                     <div class="side">
                         <span class="d-block">Wind</span>
-                        <span id="currentDayWind">22 K / M</span>
+                        <span id="currentDayWind" class="secondary">22 K / M</span>
                     </div>
                 </article>
             </div>
-            <div class="col-md-2 d-md-block d-none invisible "></div>
-            <div class="col-6  col-md-5 col-sm-6 left">
+            <div class="order-sm-2 col-md-2 d-md-block d-none invisible "></div>
+            <div class="order-1 order-sm-3 col-12 col-sm-6 col-md-5 col-sm-6 left">
                 <div>
-                    <h1 id="myCity">Tinghir</h1>
+                    <h1 id="myCity">City</h1>
                     <hr>
                 </div>
                 <div class="d-block">
